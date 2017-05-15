@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,5 +42,11 @@ public class UserController {
 	public Response addMeetup(@RequestBody Meetup newMeetup){
 		System.out.println("inside addMeetup method");
 		return userService.addMeetup(newMeetup);
+	}
+	
+	@RequestMapping(value = "/getmeetup/{presenter}", method = RequestMethod.GET)
+	public ArrayList<Meetup> getMeetup(@PathVariable String presenter){
+		System.out.println("inside getMeetup");
+		return userService.getMeetup(presenter);
 	}
 }

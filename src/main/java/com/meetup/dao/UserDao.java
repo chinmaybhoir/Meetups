@@ -11,4 +11,5 @@ public interface UserDao {
 	public Response loginUser(User user);
 	public ArrayList<Meetup> getAllMeetups();
 	public Response addMeetup(Meetup newMeetup);
+	public ArrayList<Meetup> getMeetup(String presenter);
 }

@@ -31,4 +31,8 @@ public class UserService {
 	public Response addMeetup(Meetup newMeetup){
 		return userDao.addMeetup(newMeetup);
 	}
+	
+	public ArrayList<Meetup> getMeetup(String presenter){
+		return userDao.getMeetup(presenter);
+	}
 }

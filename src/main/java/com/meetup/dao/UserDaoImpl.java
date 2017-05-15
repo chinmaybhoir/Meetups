@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,7 +47,19 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Response addMeetup(Meetup newMeetup){
 		Session session = sf.getCurrentSession();
-		session.save(newMeetup);
-		return new Response(200, "New meetup successfully added");
+		if(session.get(Meetup.class, newMeetup.getMeetTitle())==null){
+			session.save(newMeetup);
+			return new Response(200, "New meetup successfully added");
+		} else {
+			return new Response(400, "A meetup with given title is already registered.");
+		}
+	}
+	
+	@Override
+	public ArrayList<Meetup> getMeetup(String presenter){
+		Session session = sf.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		ArrayList<Meetup> meetList = (ArrayList<Meetup>) session.createCriteria(Meetup.class).add(Restrictions.eq("meetPresenter", presenter)).list();
+		return meetList;
 	}
 }
