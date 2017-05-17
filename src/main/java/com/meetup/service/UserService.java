@@ -1,13 +1,12 @@
 package com.meetup.service;
 
-import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.meetup.dao.UserDao;
-import com.meetup.model.Meetup;
 import com.meetup.model.Response;
 import com.meetup.model.User;
 @Service
@@ -24,15 +23,5 @@ public class UserService {
 		return userDao.loginUser(user);
 	}
 	
-	public ArrayList<Meetup> getAllMeetups(){
-		return userDao.getAllMeetups();
-	}
 	
-	public Response addMeetup(Meetup newMeetup){
-		return userDao.addMeetup(newMeetup);
-	}
-	
-	public ArrayList<Meetup> getMeetup(String presenter){
-		return userDao.getMeetup(presenter);
-	}
 }

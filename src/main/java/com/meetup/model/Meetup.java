@@ -1,10 +1,12 @@
 package com.meetup.model;
 
 import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalTime;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @Entity
 public class Meetup {
 	@Id
@@ -13,8 +15,8 @@ public class Meetup {
 	private String meetDescription;
 	private String meetGuest;
 	private Date meetDate;
-	private Time meetStartTime;
-	private Time meetEndTime;
+	private LocalTime meetStartTime;
+	private LocalTime meetEndTime;
 	public String getMeetTitle() {
 		return meetTitle;
 	}
@@ -45,17 +47,23 @@ public class Meetup {
 	public void setMeetDate(Date meetDate) {
 		this.meetDate = meetDate;
 	}
-	public Time getMeetStartTime() {
+	public LocalTime getMeetStartTime() {
 		return meetStartTime;
 	}
-	public void setMeetStartTime(Time meetStartTime) {
+	public void setMeetStartTime(LocalTime meetStartTime) {
 		this.meetStartTime = meetStartTime;
 	}
-	public Time getMeetEndTime() {
+	public LocalTime getMeetEndTime() {
 		return meetEndTime;
 	}
-	public void setMeetEndTime(Time meetEndTime) {
+	public void setMeetEndTime(LocalTime meetEndTime) {
 		this.meetEndTime = meetEndTime;
+	}
+	@Override
+	public String toString() {
+		return "Meetup [meetTitle=" + meetTitle + ", meetPresenter=" + meetPresenter + ", meetDescription="
+				+ meetDescription + ", meetGuest=" + meetGuest + ", meetDate=" + meetDate + ", meetStartTime="
+				+ meetStartTime + ", meetEndTime=" + meetEndTime;
 	}
 	
 }

@@ -1,16 +1,13 @@
 package com.meetup.dao;
 
-import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.meetup.model.Meetup;
 import com.meetup.model.Response;
 import com.meetup.model.User;
 @Transactional
@@ -27,7 +24,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Response loginUser(User user) {
 		Session session = sf.getCurrentSession();
-		User tempUser = session.get(User.class, user.getUserEmail());
+		User tempUser = (User) session.get(User.class, user.getUserEmail());
 		if(tempUser==null)
 			return new Response(400, "User does not exist");
 		else if(tempUser.getUserPassword().equals(user.getUserPassword()))
@@ -37,29 +34,5 @@ public class UserDaoImpl implements UserDao{
 			
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<Meetup> getAllMeetups(){
-		Session session = sf.getCurrentSession();
-		return (ArrayList<Meetup>) session.createCriteria(Meetup.class).list();
-	}
-	
-	@Override
-	public Response addMeetup(Meetup newMeetup){
-		Session session = sf.getCurrentSession();
-		if(session.get(Meetup.class, newMeetup.getMeetTitle())==null){
-			session.save(newMeetup);
-			return new Response(200, "New meetup successfully added");
-		} else {
-			return new Response(400, "A meetup with given title is already registered.");
-		}
-	}
-	
-	@Override
-	public ArrayList<Meetup> getMeetup(String presenter){
-		Session session = sf.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		ArrayList<Meetup> meetList = (ArrayList<Meetup>) session.createCriteria(Meetup.class).add(Restrictions.eq("meetPresenter", presenter)).list();
-		return meetList;
-	}
+
 }

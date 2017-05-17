@@ -1,11 +1,20 @@
 package com.meetup.model;
 
-import java.util.ArrayList;
+
+
+import java.io.Serializable;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @Entity
-public class User {
+public class User implements Serializable
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String userEmail;
 	private String userPassword;
@@ -14,6 +23,9 @@ public class User {
 	private String userPhone;
 	private String userSkills;
 	private int yearsOfExp;
+
+
+
 	public String getUserEmail() {
 		return userEmail;
 	}

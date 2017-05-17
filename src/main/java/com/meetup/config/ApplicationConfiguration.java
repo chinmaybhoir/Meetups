@@ -1,13 +1,15 @@
 package com.meetup.config;
 
+
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 
-import com.meetup.controllers.UserController;
+
 import com.meetup.service.UserService;
 
 @Configuration
@@ -21,4 +23,8 @@ public class ApplicationConfiguration {
 	public UserService userService(){
 		return new UserService();
 	}
+	/*@Bean
+	public EntityManagerFactory entityManagerFactory(){
+		return new Entity
+	}*/
 }
